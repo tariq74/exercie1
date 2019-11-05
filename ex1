@@ -1,0 +1,37 @@
+#include "stdafx.h"
+#include<iostream>
+using namespace std;
+
+void getScore(int& score) {
+	
+	cout << "enter the score";
+	cin >> score;
+	if (score > 0 && score < 100)
+		cout << "the score enter is more than 0 and not  higher than 100";
+}
+
+int  calAverage(int score) {
+	static  int av = 0;
+	av += score;
+	
+	return av;
+ }
+int findLowest(int score) {
+	static int lowest = 100;
+	if (lowest > score) {
+		lowest = score;
+	}
+	return lowest;
+}
+
+int main()
+{
+	int score=100;
+	for (int i = 0; i < 5; i++) {
+		getScore(score);
+		calAverage(score);
+		findLowest(score);
+	}
+	cout << (calAverage(0)/5)<<"\n" << findLowest(100);
+    return 0;
+}
