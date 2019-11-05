@@ -1,37 +1,59 @@
-#include "stdafx.h"
+#include"pch.h"
 #include<iostream>
+#include<iomanip>
 using namespace std;
 
-void getScore(int& score) {
+void getScore(int& score1) {
 	
-	cout << "enter the score";
-	cin >> score;
-	if (score > 0 && score < 100)
-		cout << "the score enter is more than 0 and not  higher than 100";
+	cout << "enter the score\n";
+	cin >> score1;
+	if (score1 < 0 || score1>100) {
+		cout << "You have not entered number between 0 and 100.Please enter the score again.";
+		cin >> score1;
+	}
+}
+int findLowest(int score1, int score2, int score3, int score4, int score5) {
+	int lowest = 100;
+	if (lowest > score1)
+		lowest = score1;
+	if (lowest > score2)
+		lowest = score2;
+	if (lowest > score3)
+		lowest = score3;
+	if (lowest > score4)
+		lowest = score4;
+	if (lowest > score5)
+		lowest = score5;
+	return lowest;
 }
 
-int  calAverage(int score) {
-	static  int av = 0;
-	av += score;
-	
+double  calAverage(int score1,int score2,int score3,int score4,int score5) {
+	 int av = 0;
+	 int low;
+	 low= findLowest( score1,  score2,  score3,  score4,  score5);
+	 if (low != score1)
+		 av += score1;
+	 if (low != score2)
+		 av += score2;
+	 if (low != score3)
+		 av += score3;
+	 if (low != score4)
+		 av += score4;
+	 if (low != score5)
+		 av += score5;
+
 	return av;
- }
-int findLowest(int score) {
-	static int lowest = 100;
-	if (lowest > score) {
-		lowest = score;
-	}
-	return lowest;
 }
 
 int main()
 {
-	int score=100;
-	for (int i = 0; i < 5; i++) {
-		getScore(score);
-		calAverage(score);
-		findLowest(score);
-	}
-	cout << (calAverage(0)/5)<<"\n" << findLowest(100);
-    return 0;
+	int score1, score2, score3, score4, score5;
+	getScore(score1);
+	getScore(score2);
+	getScore(score3);
+	getScore(score4);
+	getScore(score5);
+	
+	cout <<setprecision(4)<< (calAverage(score1, score2, score3, score4, score5) / 4);
+	return 0;
 }
